@@ -1,4 +1,4 @@
-{
+clear{
   "name": "chat-draw-sockets",
   "version": "1.0.0",
   "description": "",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bullutk/chatDraw/issues"
   },
-  "homepage": "https://github.com/bullutk/chatDraw#readme"
+  "homepage": "https://github.com/bullutk/chatDraw#readme",
+  "dependencies": {
+    "socket.io": "^1.7.2"
+  }
 }
