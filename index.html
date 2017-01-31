@@ -5,8 +5,17 @@
 </head>
 <body>
 
-<h1> RYAN SUCKS AT NODE</h1>
-<div id="userNames"></div>
+	<h1> RYAN SUCKS AT NODE</h1>
+	<div>
+		<h3>Enter your message here</h3>
+		<input type="text" id="chat-message" />
+		<input type="button" value="send!" onclick="sendChatMessage()" />
+	</div>
+	<div id="userNames"></div>
+
+	<div id="userChats">
+		<!-- all chats go here asthey show up -->
+	</div>
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
 
@@ -22,6 +31,17 @@
 		})
 		document.getElementById('userNames').innerHTML = newHTML;
 	})
+	socketio.on('messageToClient', (messageObject)=>{
+		document.getElementById('userChats').innerHTML += '<div class="message">' +messageObject.message + '--' +messageObject.date + '</div>';
+	});
+
+	function sendChatMessage(){
+		var messageToSend = document.getElementById('chat-message').value;
+		socketio.emit('messageToServer',{
+			message: messageToSend,
+			name: "Ryans mom"
+		});
+	}
 
 	</script>
 </body>

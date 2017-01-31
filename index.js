@@ -27,7 +27,16 @@ io.sockets.on('connect', (socket)=>{
 		socketId: socket.id,
 		name: "Anonymous"
 	})
-	io.sockets.emit('users', socketUsers)
+	io.sockets.emit('users', socketUsers);
+
+	socket.on('messageToServer', (messageObject)=>{
+		console.log("someone sent a message. it is:", messageObject.message);
+		console.log("the message is from:", messageObject.name);
+		io.sockets.emit("messageToClient",{
+			message: messageObject.message,
+			date: new Date()
+		});
+	})
 })
 
 server.listen(8080);
