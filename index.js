@@ -18,5 +18,17 @@ var socketIo = require('socket.io');
 // sockets are going to listen to the server which is listening on port 8080
 var io = socketIo.listen(server);
 
+var socketUsers = [];
+
+// Handle socket connections
+io.sockets.on('connect', (socket)=>{
+	console.log("someone connected by socket");
+	socketUsers.push({
+		socketId: socket.id,
+		name: "Anonymous"
+	})
+	io.sockets.emit('users', socketUsers)
+})
+
 server.listen(8080);
-console.log("listening on port 8080...")
+console.log("listening on port 8080...");
