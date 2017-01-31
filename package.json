@@ -1,4 +1,4 @@
-clear{
+{
   "name": "chat-draw-sockets",
   "version": "1.0.0",
   "description": "",
@@ -17,6 +17,8 @@ clear{
   },
   "homepage": "https://github.com/bullutk/chatDraw#readme",
   "dependencies": {
+    "connect": "^3.5.0",
+    "serve-static": "^1.11.2",
     "socket.io": "^1.7.2"
   }
 }
