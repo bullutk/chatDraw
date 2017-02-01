@@ -10,12 +10,19 @@
 <body>
 
 <div class="container">
-	<div>
-		<h3>Enter your message here</h3>
-		<form onsubmit="sendChatMessage()">
-			<input type="text" id="chat-message" />
-			<input class="btn btn-primary" type="submit" value="send!" />
-		</form>
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Enter your message here</h3>
+			<form onsubmit="sendChatMessage()">
+				<input type="text" id="chat-message" />
+				<input class="btn btn-primary" type="submit" value="send!" />
+			</form>
+		</div>
+		<div class="col-md-6">
+			<h3>Enter your Username Here</h3>
+				<input class="text" id="username" />
+				<input class="btn btn-primary" type="submit" value="Login!" />
+		</div>
 	</div>
 
 	<div id="userNames">

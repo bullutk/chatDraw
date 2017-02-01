@@ -21,7 +21,7 @@ function sendChatMessage(){
 	var messageToSend = document.getElementById('chat-message').value;
 	socketio.emit('messageToServer',{
 		message: messageToSend,
-		name: "Anonymous"
+		name: document.getElementById('username').value
 	});
 	document.getElementById('chat-message').value = "";
 }
@@ -56,6 +56,7 @@ canvas.addEventListener('mousedown', (event)=>{
 canvas.addEventListener('mouseup', (event)=>{
 	// console.log(event);
 	mouseDown = false;
+	lastMousePosition = null;
 });
 
 canvas.addEventListener('mousemove', (event)=>{
@@ -68,7 +69,7 @@ canvas.addEventListener('mousemove', (event)=>{
 		mousePosition = {
 			x: magicBrushX,
 			y: magicBrushY
-		}
+			}
 		if(lastMousePosition == null){
 			lastMousePosition = {
 			x: mousePosition.x,

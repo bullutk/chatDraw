@@ -31,18 +31,26 @@ var socketUsers = [];
 
 // Handle socket connections...
 io.sockets.on('connect', (socket)=>{
-	console.log('Someone connected by socket!!!');
+	console.log("Connected: %s sockets connected", socketUsers.length + 1);
 	socketUsers.push({
 		socketID: socket.id,
 		name: "Anonymous"
 	})
+
+	// disconnect
+	socket.on('disconnect', (data)=>{
+		socketUsers.splice(socketUsers.indexOf(socket), 1);
+		console.log("Disconnected: %s sockets connected", socketUsers.length)
+	});
+
 	io.sockets.emit('users', socketUsers);
 
 	socket.on('messageToServer', (messageObject)=>{
-		console.log("Someone sent a message. It is",messageObject.message);
+		console.log("Someone sent a message. It is", messageObject.message);
 		io.sockets.emit("messageToClient",{
 			message: messageObject.message,
 			date: new Date()
+		 
 		});
 	});
 	socket.on('drawingToServer', (drawingData)=>{
